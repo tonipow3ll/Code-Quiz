@@ -10,18 +10,23 @@
     <link href="style.css" rel="stylesheet">
     <title>Coding Quiz</title>
 </head>
+
+<!-- 'main' below acts as a sort of 'landing page' -->
+
 <main class="main-container">
-    <!-- commented out 'land-container' section currently on two seperate HTML files, can change and make it 'hide' and 'show'   -->
-    <div class="land-container">
+    <div class="container">
         <div id="land-container">
             <main>
-                <h1>Instructions!</h1>
-                <p>Welcome to my coding quiz. There are 10 questions total, you will have 5 minutes to complete them all. Feel free to log your high score at the end. Click 'start' below to get started!</p>
+                <h1>Hi there!</h1>
+                <p>Welcome to my coding quiz. There are 10 questions total, you will have 5 minutes to complete them all. Feel free to log your high score at the end. Click 'begin' below to get started!</p>
             </main>
         </div>
+
+<!-- once 'begin' has been clicked, below will populate - "questions" & answers below -->
+
     <div id="question-container" class="hide">
         <p class="timer">0:00</p>
-        <h1 id="question">Question</h1>
+        <div id="question">text goes here</div>
         <section id="answer-buttons" class="btn-display">
             <button class="btn">answer 1</button>
             <button class="btn">answer 2</button>
@@ -30,16 +35,22 @@
         </section>
     </div>
     <div class="controls">
-        <button id="start-btn" class="start-btn btn">Start</button>
+        <button id="start-btn" class="start-btn btn">Begin</button>
         <button id="next-btn" class="next-btn btn hide">Next</button>
     </div>
 </main>
+
+<!-- start footer -->
+
 <footer class="footer mt-auto py-3 fixed-bottom">
     <div class="container text-center">
        <a href="https://www.linkedin.com/in/tonipowell13" target="blank" class="fab fa-linkedin-in fa-2x"></a>
        <a href="https://tonipow3ll.github.io/" target="blank" class="fab fa-github fa-2x"></a>
     </div>
  </footer>
+
+ <!-- end footer -->
+
 </body>
 <script src="script.js"></script>
 </html>
