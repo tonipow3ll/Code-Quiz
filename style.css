@@ -1,0 +1,64 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    background-color: #bdc3c7;
+    padding: 0;
+    margin:0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+/* timer class below, might add styling later.  */
+/* .timer{  
+} */
+.main-container{
+    background-color: #ecf0f1;
+    width: 800px;
+    max-width: 80%;
+    border-radius: 5px;
+    padding: 10px;
+}
+.controls{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* makes start button / next button larger */
+.start-btn, .next-btn{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    background-color: #8e44ad;
+    color: #ecf0f1;
+}
+/* all answer buttons have the same color / size  */
+.btn{
+background-color: #8e44ad;
+border-radius: 5px;
+font-weight: bold;
+color: #ecf0f1;
+}
+button:hover{
+    background-color: #9b59b6;
+    color: black;
+}
+/* makes buttons 2 on 2 */
+.btn-display{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+footer, a{
+    background-color: #ecf0f1;
+    color: #8e44ad;
+}
+a:hover{
+    color: #9b59b6
+}
