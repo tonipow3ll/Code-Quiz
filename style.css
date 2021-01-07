@@ -16,7 +16,7 @@ body{
 /* timer class below, might add styling later.  */
 /* .timer{  
 } */
-.main-container{
+.main-container, .land-container{
     background-color: #ecf0f1;
     width: 800px;
     max-width: 80%;
@@ -61,4 +61,7 @@ footer, a{
 }
 a:hover{
     color: #9b59b6
+}
+.hide{
+    display: none;
 }

@@ -10,20 +10,16 @@
     <link href="style.css" rel="stylesheet">
     <title>Coding Quiz</title>
 </head>
-<div class="main-container">
-    <div id="question-container" class="hide">
-        <p class="timer">0:00</p>
-        <h1 id="question">Question</h1>
-        <section id="answer-buttons" class="btn-display">
-            <button class="btn">answer 1</button>
-            <button class="btn">answer 2</button>
-            <button class="btn">answer 3</button>
-            <button class="btn">answer 4</button>
-        </section>
+<!-- landing page - can probably use JS instead to keep 1 HTML file -->
+<div class="land-container hide">
+    <div id="land-container" class="hide">
+        <main>
+            <h1>Instructions!</h1>
+            <p>Welcome to my coding quiz. There are 10 questions total, you will have 5 minutes to complete them all. Feel free to log your high score at the end. Click 'start' below to get started!</p>
+        </main>
     </div>
     <div class="controls">
-        <button id="start-btn" class="start-btn btn">Start</button>
-        <button id="next-btn" class="next-btn btn hide">Next</button>
+        <button id="start-btn" class="start-btn btn">Begin Quiz</button>
     </div>
 </div>
 <footer class="footer mt-auto py-3 fixed-bottom">
