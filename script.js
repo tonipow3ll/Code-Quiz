@@ -1,16 +1,26 @@
-//TO DO ****once answer is 'selected', display notification (correct or incorrect),
-//TO DO ****
+//TO DO **** Once answer is 'selected', display notification (correct or incorrect),
+//TO DO **** Keep track of users score
+//TO DO **** Let users save their high scores to the app
+//TO DO **** Add timer (to whole test, or per question?)
+
+// LATER DOS*** add dark mode
 // need "next" button to show once question has been 'answered'
 
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const questionContainer = document.getElementById("question-container");
 const landContainer = document.getElementById("land-container");
-const answerButtons = document.getElementById("answer-buttons")
-const questionElement = document.getElementById("question")
+const answerButtons = document.getElementById("answer-buttons");
+const questionElement = document.getElementById("question");
 // const button = document.getElementsByClassName("btn")
 
+// timer vars
+const timerEl = document.getElementById("timer");
 
+// original start time was '5 minutes' for whole page, in future - can use seconds value * minutes wanted.. let the code do the math for you. 
+// let startTime = 60 * 5;
+let startTime = 60 ;
+let theTimer; 
 let mixQuestions, allQuestionIndex
 
 
@@ -25,23 +35,45 @@ nextButton.addEventListener('click', () => {
     currentQuestionIndex++
     nextQuestion()
 })
+// below will stop timer once 'answer' is selected - current time is set to 5 min, change time to 30 sec / question?
+answerButtons.addEventListener('click', () => clearInterval(theTimer))
 
+// convert from seconds to min:sec
+function updateTimerEl(){
+    let minutes = Math.floor(startTime / 60);
+    let seconds = startTime % 60;
+    timerEl.innerHTML = minutes + ":" + seconds;
+}
+// function for timer 
+function stopWatch(){
+    theTimer = setInterval(function(){
+        startTime--;
+        updateTimerEl();
+        if (startTime === 0){
+            console.log(startTime)
+            clearInterval(theTimer)
+            // currently 'alert's that 'times up', change to Modal 
+            alert("Times up")
+        }
+        // 1000 milleseconds = timer will 'tick' every 1 (normal) SECOND 
+    }, 1000)
+}
 // function to 'begin quiz', should also start timer
 function startQuiz(){
-    console.log('started');
-startButton.classList.add('hide');
-landContainer.classList.add('hide');
-questionContainer.classList.remove('hide');
-mixQuestions = questions.sort(() => Math.random() -.5)
-allQuestionIndex = 0;
-nextQuestion();
+    startButton.classList.add('hide');
+    landContainer.classList.add('hide');
+    questionContainer.classList.remove('hide');
+    stopWatch();
+    mixQuestions = questions.sort(() => Math.random() -.5)
+    allQuestionIndex = 0;
+    nextQuestion();
 };
 
 
 function nextQuestion(){
     resetState()
     showQuestion(mixQuestions[allQuestionIndex])
-    }
+}
 
 // below func turns the 'answers' listed under 'questions' var into 'buttons'
 function showQuestion(question){
