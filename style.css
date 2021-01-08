@@ -65,3 +65,12 @@ a:hover{
 .hide{
     display: none;
 }
+
+/* possible options for changing background color / button color if answer is correct or incorrect */
+body.correct{
+    background-color: #33ff00;
+}
+
+body.wrong{
+    background-color: #ff0033;
+}

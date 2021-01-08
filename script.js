@@ -1,8 +1,7 @@
-//TO DO ****need "next" button to show once question has been 'answered'
 //TO DO **** Once answer is 'selected', display notification (correct or incorrect),
 //TO DO **** Keep track of users score
 //TO DO **** Let users save their high scores to the app
-//TO DO **** Timer's set 
+
 
 // LATER DOS*** add dark mode
 
@@ -19,24 +18,22 @@ const timerEl = document.getElementById("timer");
 
 // original start time was '5 minutes' for whole page, in future - can use seconds value * minutes wanted.. let the code do the math for you. 
 // let startTime = 60 * 5;
-let startTime = 60 ;
+let startTime = 60 * 5;
 let theTimer; 
 let mixQuestions, allQuestionIndex
 
-
-// #question - insert 'questions' into text area
-// #answer-buttons - insert 'answers' into text areas
-// class for "timer" - need to set interval 
 
 // event listener, once 'start' is clicked, quiz will start 
 startButton.addEventListener('click', startQuiz);
 // adds loop for multiple questions
 nextButton.addEventListener('click', () => {
-    currentQuestionIndex++
+    allQuestionIndex++
     nextQuestion()
 })
 // below will stop timer once 'answer' is selected - current time is set to 5 min, change time to 30 sec / question?
-answerButtons.addEventListener('click', () => clearInterval(theTimer))
+answerButtons.addEventListener('click', () => clearInterval(theTimer));
+// below 'stops' the timer once answer is selected, re-starts once 'next' is selected 
+nextButton.addEventListener('click' , () => stopWatch());
 
 // convert from seconds to min:sec
 function updateTimerEl(){
@@ -95,6 +92,7 @@ function showQuestion(question){
 
 // hides 'next' button before answer is selected, lets the 'answer buttons' show strings below in questions object, 
 function resetState(){
+    resetAll(document.body);
     nextButton.classList.add('hide');
     while (answerButtons.firstChild) {
         answerButtons.removeChild(answerButtons.firstChild)
@@ -103,8 +101,39 @@ function resetState(){
 // function below should 'move things forward'
 // make 'next' button appear once an answer has been selected
 function selectAnswer(e){
-
+    const userChoice = e.target;
+    const correct = userChoice.dataset.correct;
+    setStatus(document.body, correct)
+    Array.from(answerButtons.children).forEach(button => {
+        setStatus(button, button.dataset.correct);
+    }
+        )
+    if (mixQuestions.length > allQuestionIndex + 1){
+        nextButton.classList.remove('hide')
+    }
+    // once the user has gone through all the questions 'try again' button will appear
+    // need a "add high score button"
+    else{
+        startButton.innerText = "Try again"
+        startButton.classList.remove('hide')
+    }
 }
+
+// should change color if correct or incorrect
+function setStatus(element, correct){
+    resetState(element)
+    if (correct){
+        element.classList.add('correct')
+    }
+    else element.classList.add('wrong')
+    }
+    
+    // below 'resets' everything once a user has selected an answer
+function resetAll (element) {
+    element.classList.remove('correct');
+    element.classList.remove('wrong');
+}
+
 
 
 // will need question / answers format below 
