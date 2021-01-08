@@ -1,10 +1,10 @@
+//TO DO ****need "next" button to show once question has been 'answered'
 //TO DO **** Once answer is 'selected', display notification (correct or incorrect),
 //TO DO **** Keep track of users score
 //TO DO **** Let users save their high scores to the app
-//TO DO **** Add timer (to whole test, or per question?)
+//TO DO **** Timer's set 
 
 // LATER DOS*** add dark mode
-// need "next" button to show once question has been 'answered'
 
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
