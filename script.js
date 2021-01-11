@@ -1,18 +1,19 @@
 //TO DO **** Once answer is 'selected', display notification (correct or incorrect),
 //TO DO **** reduce time on clock if user answers incorrectly
 //TO DO **** Let users save their high scores to the app
-//TO DO **** small form for logging score
-//TO DO **** button for quiz ending 'log your score'
-
+//TO DO **** look up common quiz questions 
+//TO DO **** change 'alert' to modal? 
 
 
 // LATER DOS*** add dark mode
 
+//  variables for buttons, and quiz forms throughout page
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const scoreButton = document.getElementById("score-btn")
 const questionContainer = document.getElementById("question-container");
 const landContainer = document.getElementById("land-container");
+const scoreContainer = document.getElementById("score-container");
 const answerButtons = document.getElementById("answer-buttons");
 const questionElement = document.getElementById("question");
 // const button = document.getElementsByClassName("btn")
@@ -38,6 +39,8 @@ nextButton.addEventListener('click', () => {
 answerButtons.addEventListener('click', () => clearInterval(theTimer));
 // below 'stops' the timer once answer is selected, re-starts once 'next' is selected 
 nextButton.addEventListener('click' , () => stopWatch());
+// once all questions have been answered teh score button appears, event listener below brings up 'form' to 'log score'
+scoreButton.addEventListener('click', () => logScore());
 
 // convert from seconds to min:sec
 function updateTimerEl(){
@@ -51,7 +54,6 @@ function stopWatch(){
         startTime--;
         updateTimerEl();
         if (startTime === 0){
-            console.log(startTime)
             clearInterval(theTimer)
             // currently 'alert's that 'times up', change to Modal 
             alert("Times up")
@@ -89,6 +91,9 @@ function showQuestion(question){
         if (answer.correct){
             button.dataset.correct = answer.correct;
         }
+        else if(answer){
+            startTime - 10;
+        }
         button.addEventListener('click', selectAnswer)
         answerButtons.appendChild(button)
     })
@@ -102,6 +107,14 @@ function resetState(){
         answerButtons.removeChild(answerButtons.firstChild)
     }
 }
+
+function logScore(){
+    resetAll(document.body);
+    // nextButton.classList.add('hide')
+    questionContainer.classList.add('hide');
+    scoreContainer.classList.remove('hide');
+}
+
 // function below should 'move things forward'
 // make 'next' button appear once an answer has been selected
 function selectAnswer(e){
@@ -111,12 +124,13 @@ function selectAnswer(e){
     if (mixQuestions.length > allQuestionIndex + 1){
         nextButton.classList.remove('hide')
     }
-   // changed button to 'log your score' , will add functionality later
+   // changed button to 'log your score' , need to add form for intials 
     else{
         scoreButton.innerText = "Log your score!"
-        scoreButton.classList.remove('hide')
+        scoreButton.classList.remove('hide');
     }
 }
+
 
 // should change color if correct or incorrect
 function setStatus(element, correct){
