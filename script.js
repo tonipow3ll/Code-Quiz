@@ -1,12 +1,16 @@
 //TO DO **** Once answer is 'selected', display notification (correct or incorrect),
-//TO DO **** Keep track of users score
+//TO DO **** reduce time on clock if user answers incorrectly
 //TO DO **** Let users save their high scores to the app
+//TO DO **** small form for logging score
+//TO DO **** button for quiz ending 'log your score'
+
 
 
 // LATER DOS*** add dark mode
 
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
+const scoreButton = document.getElementById("score-btn")
 const questionContainer = document.getElementById("question-container");
 const landContainer = document.getElementById("land-container");
 const answerButtons = document.getElementById("answer-buttons");
@@ -66,7 +70,7 @@ function startQuiz(){
     nextQuestion();
 };
 
-
+// resets everything once user has selected answer, takes away answer buttons
 function nextQuestion(){
     resetState()
     showQuestion(mixQuestions[allQuestionIndex])
@@ -81,7 +85,7 @@ function showQuestion(question){
         const button = document.createElement('button')
         button.innerText = answer.text
         button.classList.add('btn')
-        // if answer is correct - adds data attribute to button 
+        // if answer is correct - adds data attribute to button ***THIS WILL BE IMPORTANT LATER****
         if (answer.correct){
             button.dataset.correct = answer.correct;
         }
@@ -104,18 +108,13 @@ function selectAnswer(e){
     const userChoice = e.target;
     const correct = userChoice.dataset.correct;
     setStatus(document.body, correct)
-    Array.from(answerButtons.children).forEach(button => {
-        setStatus(button, button.dataset.correct);
-    }
-        )
     if (mixQuestions.length > allQuestionIndex + 1){
         nextButton.classList.remove('hide')
     }
-    // once the user has gone through all the questions 'try again' button will appear
-    // need a "add high score button"
+   // changed button to 'log your score' , will add functionality later
     else{
-        startButton.innerText = "Try again"
-        startButton.classList.remove('hide')
+        scoreButton.innerText = "Log your score!"
+        scoreButton.classList.remove('hide')
     }
 }
 
