@@ -1,5 +1,3 @@
-//TO DO **** Once answer is 'selected', display notification (correct or incorrect),
-//TO DO **** reduce time on clock if user answers incorrectly
 //TO DO **** Let users save their high scores to the app
 //TO DO **** look up common quiz questions 
 //TO DO **** change 'alert' to modal? 
@@ -10,12 +8,14 @@
 //  variables for buttons, and quiz forms throughout page
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
-const scoreButton = document.getElementById("score-btn")
+const finishButton = document.getElementById("finish-btn");
+const scoreButton = document.getElementById("score-btn");
 const questionContainer = document.getElementById("question-container");
 const landContainer = document.getElementById("land-container");
 const scoreContainer = document.getElementById("score-container");
 const answerButtons = document.getElementById("answer-buttons");
 const questionElement = document.getElementById("question");
+const finalScore = JSON.parse(localStorage.getItem("timer"));
 // const button = document.getElementsByClassName("btn")
 
 // timer vars
@@ -39,8 +39,14 @@ nextButton.addEventListener('click', () => {
 answerButtons.addEventListener('click', () => clearInterval(theTimer));
 // below 'stops' the timer once answer is selected, re-starts once 'next' is selected 
 nextButton.addEventListener('click' , () => stopWatch());
-// once all questions have been answered teh score button appears, event listener below brings up 'form' to 'log score'
-scoreButton.addEventListener('click', () => logScore());
+// once all questions have been answered the score button appears, event listener below brings up 'form' to 'log score'
+finishButton.addEventListener('click', () => logScore());
+scoreButton.addEventListener('click', () => highScore());
+
+// SETS item in local storage
+function highScore() {
+    localStorage.setItem("timer", JSON.stringify(theTimer));
+  }
 
 // convert from seconds to min:sec
 function updateTimerEl(){
@@ -91,9 +97,10 @@ function showQuestion(question){
         if (answer.correct){
             button.dataset.correct = answer.correct;
         }
-        else if(answer){
-            startTime - 10;
-        }
+       // adding in theTimer-- will keep the clock ticking once an answer is selected 
+        // else if(answer.wrong){
+        //     theTimer -= 10;
+        // }
         button.addEventListener('click', selectAnswer)
         answerButtons.appendChild(button)
     })
@@ -108,11 +115,14 @@ function resetState(){
     }
 }
 
+// below resets all fields once quiz is finished, brings users to the 'final screen'
 function logScore(){
     resetAll(document.body);
     // nextButton.classList.add('hide')
     questionContainer.classList.add('hide');
     scoreContainer.classList.remove('hide');
+    scoreButton.classList.remove('hide');
+    finishButton.classList.add('hide');
 }
 
 // function below should 'move things forward'
@@ -126,8 +136,8 @@ function selectAnswer(e){
     }
    // changed button to 'log your score' , need to add form for intials 
     else{
-        scoreButton.innerText = "Log your score!"
-        scoreButton.classList.remove('hide');
+        finishButton.innerText = "Finish Quiz!"
+        finishButton.classList.remove('hide');
     }
 }
 
@@ -136,10 +146,18 @@ function selectAnswer(e){
 function setStatus(element, correct){
     resetState(element)
     if (correct){
-        element.classList.add('correct')
+        element.classList.add('correct');
     }
-    else element.classList.add('wrong')
+    // takes 10 seconds off of total time left if answer is 'wrong'
+     else if 
+         (startTime = startTime - 9, element.classList.add('wrong'));
+            // console.log("wrong");
     }
+
+
+// function wrongAnswer(startTime){
+//     startTime -= 5;
+// }
     
     // below 'resets' everything once a user has selected an answer
 function resetAll (element) {
