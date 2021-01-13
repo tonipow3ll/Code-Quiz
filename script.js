@@ -43,14 +43,15 @@ answerButtons.addEventListener('click', () => clearInterval(theTimer));
 nextButton.addEventListener('click' , () => stopWatch());
 // once all questions have been answered the score button appears, event listener below brings up 'form' to 'log score'
 finishButton.addEventListener('click', () => logScore());
-scoreButton.addEventListener('click', () => highScore());
+scoreButton.addEventListener('click', () => writeScore());
 
 
 // below currently writes [html object el] to correct position 
 function highScore() {
-    let userScore = localStorage.getItem("timer")
+    let timer = localStorage.getItem("timer")
     let p = document.createElement('p')
-    logInitials.textContent = userInitials;
+    // logInitials.textContent = userInitials;
+    p.textContent = timer; 
     document.body.appendChild(p)
   }
 

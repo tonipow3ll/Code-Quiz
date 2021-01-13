@@ -1,2 +1,3 @@
 # Code-Quiz
-timed code quiz
+
+For this assignment we were tasked with making a timed quiz application. 
