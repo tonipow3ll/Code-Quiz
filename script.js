@@ -24,7 +24,6 @@ const logInitials = document.querySelector("h2");
 const timerEl = document.getElementById("timer");
 
 // original start time was '5 minutes' for whole page, in future - can use seconds value * minutes wanted.. let the code do the math for you. 
-// let startTime = 60 * 5;
 let startTime = 60 * 5;
 let theTimer; 
 let mixQuestions, allQuestionIndex
@@ -49,16 +48,18 @@ scoreButton.addEventListener('click', () => writeScore());
 // below currently writes [html object el] to correct position 
 function highScore() {
     let timer = localStorage.getItem("timer")
-    let p = document.createElement('p')
+    let p = document.querySelector("h2")
     // logInitials.textContent = userInitials;
     p.textContent = timer; 
-    document.body.appendChild(p)
+    document.innerHTML.appendChild(p)
   }
 
 function writeScore(){
     localStorage.setItem("timer", userInitials.value)
     highScore();
 }
+
+
 
 // convert from seconds to min:sec
 function updateTimerEl(){
@@ -181,41 +182,41 @@ const questions = [
         {text: "Bonnie", correct: false},
         {text: "Eric", correct: false}
         ]
-    },
-    {
-        question: "What is Jack's name?",
-        answers:[
-        {text: "Toni", correct: false},
-        {text: "Jack Bauer", correct: true},
-        {text: "Bonnie", correct: false},
-        {text: "Eric", correct: false}
-        ]
-    },
-    {
-        question: "What Eric's name?",
-        answers:[
-        {text: "Toni", correct: false},
-        {text: "Jack Bauer", correct: false},
-        {text: "Bonnie", correct: false},
-        {text: "Eric", correct: true}
-        ]
-    },
-    {
-        question: "What is Bonnie's name?",
-        answers:[
-        {text: "Toni", correct: false},
-        {text: "Jack Bauer", correct: false},
-        {text: "Bonnie", correct: true},
-        {text: "Eric", correct: false}
-        ]
-    },
-    {
-        question: "What does HTML stand for?",
-        answers:[
-        {text: "Hypertext Markup Language", correct: true},
-        {text: "Hacking Text Machine Learning", correct: false},
-        {text: "How To Meet Ladies", correct: false},
-        {text: "How Text Meets Logic", correct: false}
-        ]
     }
+    // {
+    //     question: "What is Jack's name?",
+    //     answers:[
+    //     {text: "Toni", correct: false},
+    //     {text: "Jack Bauer", correct: true},
+    //     {text: "Bonnie", correct: false},
+    //     {text: "Eric", correct: false}
+    //     ]
+    // },
+    // {
+    //     question: "What Eric's name?",
+    //     answers:[
+    //     {text: "Toni", correct: false},
+    //     {text: "Jack Bauer", correct: false},
+    //     {text: "Bonnie", correct: false},
+    //     {text: "Eric", correct: true}
+    //     ]
+    // },
+    // {
+    //     question: "What is Bonnie's name?",
+    //     answers:[
+    //     {text: "Toni", correct: false},
+    //     {text: "Jack Bauer", correct: false},
+    //     {text: "Bonnie", correct: true},
+    //     {text: "Eric", correct: false}
+    //     ]
+    // },
+    // {
+    //     question: "What does HTML stand for?",
+    //     answers:[
+    //     {text: "Hypertext Markup Language", correct: true},
+    //     {text: "Hacking Text Machine Learning", correct: false},
+    //     {text: "How To Meet Ladies", correct: false},
+    //     {text: "How Text Meets Logic", correct: false}
+    //     ]
+    // }
 ]
