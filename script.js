@@ -15,7 +15,9 @@ const landContainer = document.getElementById("land-container");
 const scoreContainer = document.getElementById("score-container");
 const answerButtons = document.getElementById("answer-buttons");
 const questionElement = document.getElementById("question");
-const finalScore = JSON.parse(localStorage.getItem("timer"));
+// const finalScore = JSON.parse(localStorage.getItem("timer"));
+const userInitials = document.querySelector("input");
+const logInitials = document.querySelector("h2");
 // const button = document.getElementsByClassName("btn")
 
 // timer vars
@@ -43,10 +45,19 @@ nextButton.addEventListener('click' , () => stopWatch());
 finishButton.addEventListener('click', () => logScore());
 scoreButton.addEventListener('click', () => highScore());
 
-// SETS item in local storage
+
+// below currently writes [html object el] to correct position 
 function highScore() {
-    localStorage.setItem("timer", JSON.stringify(theTimer));
+    let userScore = localStorage.getItem("timer")
+    let p = document.createElement('p')
+    logInitials.textContent = userInitials;
+    document.body.appendChild(p)
   }
+
+function writeScore(){
+    localStorage.setItem("timer", userInitials.value)
+    highScore();
+}
 
 // convert from seconds to min:sec
 function updateTimerEl(){
@@ -61,7 +72,7 @@ function stopWatch(){
         updateTimerEl();
         if (startTime === 0){
             clearInterval(theTimer)
-            // currently 'alert's that 'times up', change to Modal 
+            // currently 'alert's 'times up', change to Modal 
             alert("Times up")
         }
         // 1000 milleseconds = timer will 'tick' every 1 (normal) SECOND 
@@ -97,10 +108,6 @@ function showQuestion(question){
         if (answer.correct){
             button.dataset.correct = answer.correct;
         }
-       // adding in theTimer-- will keep the clock ticking once an answer is selected 
-        // else if(answer.wrong){
-        //     theTimer -= 10;
-        // }
         button.addEventListener('click', selectAnswer)
         answerButtons.appendChild(button)
     })
@@ -145,19 +152,15 @@ function selectAnswer(e){
 // should change color if correct or incorrect
 function setStatus(element, correct){
     resetState(element)
+    // alert.innerText = "correct!";
     if (correct){
         element.classList.add('correct');
     }
     // takes 10 seconds off of total time left if answer is 'wrong'
      else if 
          (startTime = startTime - 9, element.classList.add('wrong'));
-            // console.log("wrong");
     }
 
-
-// function wrongAnswer(startTime){
-//     startTime -= 5;
-// }
     
     // below 'resets' everything once a user has selected an answer
 function resetAll (element) {
