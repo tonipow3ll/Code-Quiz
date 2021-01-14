@@ -24,7 +24,7 @@ const logInitials = document.querySelector("h2");
 const timerEl = document.getElementById("timer");
 
 // original start time was '5 minutes' for whole page, in future - can use seconds value * minutes wanted.. let the code do the math for you. 
-let startTime = 60 * 5;
+let startTime = 60 * 10;
 let theTimer; 
 let mixQuestions, allQuestionIndex
 
@@ -45,13 +45,15 @@ finishButton.addEventListener('click', () => logScore());
 scoreButton.addEventListener('click', () => writeScore());
 
 
-// below currently writes [html object el] to correct position 
+// below currently writes value of timer to the 'scoreboard', does not write user's initials
 function highScore() {
     let timer = localStorage.getItem("timer")
     let p = document.querySelector("h2")
     // logInitials.textContent = userInitials;
     p.textContent = timer; 
-    document.innerHTML.appendChild(p)
+    document.innerHTML.appendChild(p);
+    document.innerHTML.appendChild(value);
+    // document.innerHTML.appendChild("key")
   }
 
 function writeScore(){
@@ -77,8 +79,8 @@ function stopWatch(){
             // currently 'alert's 'times up', change to Modal 
             alert("Times up")
         }
-        // 1000 milleseconds = timer will 'tick' every 1 (normal) SECOND 
-    }, 1000)
+        // 1000 milleseconds = timer will 'tick' every 1 (normal) SECOND, changed to 900 - page loads slightly faster
+    }, 900)
 }
 // function to 'begin quiz', should also start timer
 function startQuiz(){
@@ -115,7 +117,7 @@ function showQuestion(question){
     })
 }
 
-// hides 'next' button before answer is selected, lets the 'answer buttons' show strings below in questions object, 
+// hides 'next' button before answer is selected, lets the 'answer buttons' show as strings below in questions object, 
 function resetState(){
     resetAll(document.body);
     nextButton.classList.add('hide');
@@ -143,7 +145,7 @@ function selectAnswer(e){
     if (mixQuestions.length > allQuestionIndex + 1){
         nextButton.classList.remove('hide')
     }
-   // changed button to 'log your score' , need to add form for intials 
+   // button to 'finish quiz', will bring up the 'log score' form if no more questions remain
     else{
         finishButton.innerText = "Finish Quiz!"
         finishButton.classList.remove('hide');
@@ -175,39 +177,39 @@ function resetAll (element) {
 // will need question / answers format below 
 const questions = [
     {
-        question: "What is my name?",
+        question: "What is the basic definition of a 'Boolean'",
         answers:[
-        {text: "Toni", correct: true},
-        {text: "Jack Bauer", correct: false},
-        {text: "Bonnie", correct: false},
-        {text: "Eric", correct: false}
+        {text: "A true or false statement", correct: true},
+        {text: "A scary ghost", correct: false},
+        {text: "A yes or no statement", correct: false},
+        {text: "A statement in Javascript", correct: false}
         ]
     }
     // {
-    //     question: "What is Jack's name?",
+    //     question: "CSS stands for?",
     //     answers:[
-    //     {text: "Toni", correct: false},
-    //     {text: "Jack Bauer", correct: true},
-    //     {text: "Bonnie", correct: false},
-    //     {text: "Eric", correct: false}
+    //     {text: "Centering Shouldn't Suck", correct: false},
+    //     {text: "Cascading Style Sheets", correct: true},
+    //     {text: "Collection of Stackoverflow Snippers", correct: false},
+    //     {text: "Competitive Selector Syntax", correct: false}
     //     ]
     // },
     // {
-    //     question: "What Eric's name?",
+    //     question: "Inside which element would we put a JavaScript src file?",
     //     answers:[
-    //     {text: "Toni", correct: false},
-    //     {text: "Jack Bauer", correct: false},
-    //     {text: "Bonnie", correct: false},
-    //     {text: "Eric", correct: true}
+    //     {text: "<javascript>", correct: false},
+    //     {text: "<java>", correct: false},
+    //     {text: "<js>", correct: false},
+    //     {text: "<script>", correct: true}
     //     ]
     // },
     // {
-    //     question: "What is Bonnie's name?",
+    //     question: "Which is the correct way for adding a single line comment in a javascript file?",
     //     answers:[
-    //     {text: "Toni", correct: false},
-    //     {text: "Jack Bauer", correct: false},
-    //     {text: "Bonnie", correct: true},
-    //     {text: "Eric", correct: false}
+    //     {text: "# comment goes here ", correct: false},
+    //     {text: "<-- comment goes here -->", correct: false},
+    //     {text: "// Comment goes here ", correct: true},
+    //     {text: " 'comment goes here' ", correct: false}
     //     ]
     // },
     // {
@@ -218,5 +220,51 @@ const questions = [
     //     {text: "How To Meet Ladies", correct: false},
     //     {text: "How Text Meets Logic", correct: false}
     //     ]
-    // }
+    // },
+    
+    // {
+    //     question: "JQuery is considered a....",
+    //     answers:[
+    //     {text: "Javascript Framework", correct: false},
+    //     {text: "Java Library", correct: false},
+    //     {text: "Javascript Library", correct: true},
+    //     {text: "Java Framework", correct: false}
+    //     ]
+    // },
+    // {
+    //     question: "Bootstrap is considered a....",
+    //     answers:[
+    //     {text: "CSS Library", correct: false},
+    //     {text: "CSS Framework", correct: true},
+    //     {text: "HTML / CSS file", correct: false},
+    //     {text: "Strapping on shoes", correct: false}
+    //     ]
+    // },
+    // {
+    //     question: "What are the three ways to target elements on a page?",
+    //     answers:[
+    //     {text: "<tag>, .class, #id", correct: true},
+    //     {text: "Tag, Class, and Hashtag", correct: false},
+    //     {text: "[], {}, $ ", correct: false},
+    //     {text: "//, /* */, <--   -->", correct: false}
+    //     ]
+    // },
+    // {
+    //     question: "In CSS - what is the default value of the position property?",
+    //     answers:[
+    //     {text: "fixed", correct: false},
+    //     {text: "Absolute", correct: false},
+    //     {text: "Relative", correct: false},
+    //     {text: "Static", correct: true},
+    //     ]
+    // },
+    // {
+    //     question: "What does API stand for?",
+    //     answers:[
+    //     {text: "Apps Pushing Intelligence", correct: false},
+    //     {text: "Application Program Interface", correct: true},
+    //     {text: "Application Personal Interchange", correct: false},
+    //     {text: "Apps Programming Intelligence", correct: false}
+    //     ]
+    // },
 ]
