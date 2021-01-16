@@ -10,12 +10,12 @@ const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
 const finishButton = document.getElementById("finish-btn");
 const scoreButton = document.getElementById("score-btn");
+const replayButton = document.getElementById("replay-btn");
 const questionContainer = document.getElementById("question-container");
 const landContainer = document.getElementById("land-container");
 const scoreContainer = document.getElementById("score-container");
 const answerButtons = document.getElementById("answer-buttons");
 const questionElement = document.getElementById("question");
-// const finalScore = JSON.parse(localStorage.getItem("timer"));
 const userInitials = document.querySelector("input");
 const logInitials = document.querySelector("h2");
 // const button = document.getElementsByClassName("btn")
@@ -23,7 +23,7 @@ const logInitials = document.querySelector("h2");
 // timer vars
 const timerEl = document.getElementById("timer");
 
-// original start time was '5 minutes' for whole page, in future - can use seconds value * minutes wanted.. let the code do the math for you. 
+// original start time was 5 min for whole page, changed to 10 min.
 let startTime = 60 * 10;
 let theTimer; 
 let mixQuestions, allQuestionIndex
@@ -43,25 +43,24 @@ nextButton.addEventListener('click' , () => stopWatch());
 // once all questions have been answered the score button appears, event listener below brings up 'form' to 'log score'
 finishButton.addEventListener('click', () => logScore());
 scoreButton.addEventListener('click', () => writeScore());
+replayButton.addEventListener('click', () => rePlay());
 
 
 // below currently writes value of timer to the 'scoreboard', does not write user's initials
 function highScore() {
     let timer = localStorage.getItem("timer")
     let p = document.querySelector("h2")
-    // logInitials.textContent = userInitials;
+    logInitials.textContent = userInitials;
     p.textContent = timer; 
-    document.innerHTML.appendChild(p);
-    document.innerHTML.appendChild(value);
-    // document.innerHTML.appendChild("key")
-  }
-
-function writeScore(){
-    localStorage.setItem("timer", userInitials.value)
-    highScore();
+    document.innerHTML.createElement(p);
+    const finalScore = JSON.parse(localStorage.getItem("timer"));
+    document.innerHTML.createElement(finalScore.value);
 }
 
-
+function writeScore(){
+    localStorage.setItem("highScores", json.stringfity([]))
+    highScore();
+}
 
 // convert from seconds to min:sec
 function updateTimerEl(){
@@ -134,6 +133,15 @@ function logScore(){
     scoreContainer.classList.remove('hide');
     scoreButton.classList.remove('hide');
     finishButton.classList.add('hide');
+    replayButton.classList.remove('hide');
+}
+
+function rePlay(){
+    resetAll(document.body);
+    scoreContainer.classList.add('hide');
+    scoreButton.classList.add('hide');
+    replayButton.classList.add('hide');
+    startQuiz();
 }
 
 // function below should 'move things forward'
@@ -184,87 +192,87 @@ const questions = [
         {text: "A yes or no statement", correct: false},
         {text: "A statement in Javascript", correct: false}
         ]
-    }
-    // {
-    //     question: "CSS stands for?",
-    //     answers:[
-    //     {text: "Centering Shouldn't Suck", correct: false},
-    //     {text: "Cascading Style Sheets", correct: true},
-    //     {text: "Collection of Stackoverflow Snippers", correct: false},
-    //     {text: "Competitive Selector Syntax", correct: false}
-    //     ]
-    // },
-    // {
-    //     question: "Inside which element would we put a JavaScript src file?",
-    //     answers:[
-    //     {text: "<javascript>", correct: false},
-    //     {text: "<java>", correct: false},
-    //     {text: "<js>", correct: false},
-    //     {text: "<script>", correct: true}
-    //     ]
-    // },
-    // {
-    //     question: "Which is the correct way for adding a single line comment in a javascript file?",
-    //     answers:[
-    //     {text: "# comment goes here ", correct: false},
-    //     {text: "<-- comment goes here -->", correct: false},
-    //     {text: "// Comment goes here ", correct: true},
-    //     {text: " 'comment goes here' ", correct: false}
-    //     ]
-    // },
-    // {
-    //     question: "What does HTML stand for?",
-    //     answers:[
-    //     {text: "Hypertext Markup Language", correct: true},
-    //     {text: "Hacking Text Machine Learning", correct: false},
-    //     {text: "How To Meet Ladies", correct: false},
-    //     {text: "How Text Meets Logic", correct: false}
-    //     ]
-    // },
+    },
+    {
+        question: "CSS stands for?",
+        answers:[
+        {text: "Centering Shouldn't Suck", correct: false},
+        {text: "Cascading Style Sheets", correct: true},
+        {text: "Collection of Stackoverflow Snippers", correct: false},
+        {text: "Competitive Selector Syntax", correct: false}
+        ]
+    },
+    {
+        question: "Inside which element would we put a JavaScript src file?",
+        answers:[
+        {text: "<javascript>", correct: false},
+        {text: "<java>", correct: false},
+        {text: "<js>", correct: false},
+        {text: "<script>", correct: true}
+        ]
+    },
+    {
+        question: "Which is the correct way for adding a single line comment in a javascript file?",
+        answers:[
+        {text: "# comment goes here ", correct: false},
+        {text: "<-- comment goes here -->", correct: false},
+        {text: "// Comment goes here ", correct: true},
+        {text: " 'comment goes here' ", correct: false}
+        ]
+    },
+    {
+        question: "What does HTML stand for?",
+        answers:[
+        {text: "Hypertext Markup Language", correct: true},
+        {text: "Hacking Text Machine Learning", correct: false},
+        {text: "How To Meet Ladies", correct: false},
+        {text: "How Text Meets Logic", correct: false}
+        ]
+    },
     
-    // {
-    //     question: "JQuery is considered a....",
-    //     answers:[
-    //     {text: "Javascript Framework", correct: false},
-    //     {text: "Java Library", correct: false},
-    //     {text: "Javascript Library", correct: true},
-    //     {text: "Java Framework", correct: false}
-    //     ]
-    // },
-    // {
-    //     question: "Bootstrap is considered a....",
-    //     answers:[
-    //     {text: "CSS Library", correct: false},
-    //     {text: "CSS Framework", correct: true},
-    //     {text: "HTML / CSS file", correct: false},
-    //     {text: "Strapping on shoes", correct: false}
-    //     ]
-    // },
-    // {
-    //     question: "What are the three ways to target elements on a page?",
-    //     answers:[
-    //     {text: "<tag>, .class, #id", correct: true},
-    //     {text: "Tag, Class, and Hashtag", correct: false},
-    //     {text: "[], {}, $ ", correct: false},
-    //     {text: "//, /* */, <--   -->", correct: false}
-    //     ]
-    // },
-    // {
-    //     question: "In CSS - what is the default value of the position property?",
-    //     answers:[
-    //     {text: "fixed", correct: false},
-    //     {text: "Absolute", correct: false},
-    //     {text: "Relative", correct: false},
-    //     {text: "Static", correct: true},
-    //     ]
-    // },
-    // {
-    //     question: "What does API stand for?",
-    //     answers:[
-    //     {text: "Apps Pushing Intelligence", correct: false},
-    //     {text: "Application Program Interface", correct: true},
-    //     {text: "Application Personal Interchange", correct: false},
-    //     {text: "Apps Programming Intelligence", correct: false}
-    //     ]
-    // },
+    {
+        question: "JQuery is considered a....",
+        answers:[
+        {text: "Javascript Framework", correct: false},
+        {text: "Java Library", correct: false},
+        {text: "Javascript Library", correct: true},
+        {text: "Java Framework", correct: false}
+        ]
+    },
+    {
+        question: "Bootstrap is considered a....",
+        answers:[
+        {text: "CSS Library", correct: false},
+        {text: "CSS Framework", correct: true},
+        {text: "HTML / CSS file", correct: false},
+        {text: "Strapping on shoes", correct: false}
+        ]
+    },
+    {
+        question: "What are the three ways to target elements on a page?",
+        answers:[
+        {text: "<tag>, .class, #id", correct: true},
+        {text: "Tag, Class, and Hashtag", correct: false},
+        {text: "[], {}, $ ", correct: false},
+        {text: "//, /* */, <--   -->", correct: false}
+        ]
+    },
+    {
+        question: "In CSS - what is the default value of the position property?",
+        answers:[
+        {text: "fixed", correct: false},
+        {text: "Absolute", correct: false},
+        {text: "Relative", correct: false},
+        {text: "Static", correct: true},
+        ]
+    },
+    {
+        question: "What does API stand for?",
+        answers:[
+        {text: "Apps Pushing Intelligence", correct: false},
+        {text: "Application Program Interface", correct: true},
+        {text: "Application Personal Interchange", correct: false},
+        {text: "Apps Programming Intelligence", correct: false}
+        ]
+    }
 ]

@@ -29,7 +29,7 @@ body{
     align-items: center;
 }
 /* makes start button / next button / score button larger*/
-.start-btn, .next-btn, .score-btn{
+.start-btn, .next-btn, .score-btn .replay-btn{
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
