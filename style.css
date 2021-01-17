@@ -1,7 +1,10 @@
+/* font styling */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 *{
     font-family: 'Montserrat', sans-serif;
 }
+
 body{
     background-color: #bdc3c7;
     padding: 0;
@@ -13,7 +16,7 @@ body{
     align-items: center;
     display: flex;
 }
-
+/* Styling for containers  */
 .main-container, .land-container, .final-container{
     background-color: #ecf0f1;
     width: 800px;

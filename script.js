@@ -135,7 +135,7 @@ function logScore(){
     finishButton.classList.add('hide');
     replayButton.classList.remove('hide');
 }
-
+// function for resetting everything once 'replay' button is clicked 
 function rePlay(){
     resetAll(document.body);
     scoreContainer.classList.add('hide');
