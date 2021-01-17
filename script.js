@@ -48,7 +48,7 @@ replayButton.addEventListener('click', () => rePlay());
 
 // below currently writes value of timer to the 'scoreboard', does not write user's initials
 function highScore() {
-    let timer = localStorage.getItem("timer")
+    let timer = localStorage.getItem("timerEl")
     let p = document.querySelector("h2")
     logInitials.textContent = userInitials;
     p.textContent = timer; 
@@ -58,7 +58,7 @@ function highScore() {
 }
 
 function writeScore(){
-    localStorage.setItem("highScores", json.stringfity([]))
+    localStorage.setItem("highScores", JSON.stringify([]))
     highScore();
 }
 
@@ -78,8 +78,8 @@ function stopWatch(){
             // currently 'alert's 'times up', change to Modal 
             alert("Times up")
         }
-        // 1000 milleseconds = timer will 'tick' every 1 (normal) SECOND, changed to 900 - page loads slightly faster
-    }, 900)
+        // 1000 milleseconds = timer will 'tick' every 1 (normal) SECOND, changed to 500 - page loads slightly faster
+    }, 500)
 }
 // function to 'begin quiz', should also start timer
 function startQuiz(){
@@ -183,7 +183,7 @@ function resetAll (element) {
 
 
 
-// will need question / answers format below 
+// questions/answers object
 const questions = [
     {
         question: "What is the basic definition of a 'Boolean'",

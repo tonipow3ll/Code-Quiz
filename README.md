@@ -9,10 +9,10 @@
 [View the deployed application here]( https://tonipow3ll.github.io/Code-Quiz/)
 
 
-#### Google Fonts was used for all fonts on this application. 
 
 
 # Credits
+#### Google Fonts was used for all fonts on this application. 
 ### Many thanks to [Scott Byer](https://github.com/switch120), [Mike Fearly](https://michaelfearnley.com/) and Bobby Hoffman- for sharing their knowledge with us! 
 #### Credit to w3schools, twitter, buzzfeed, and reddit - for helping to think of some quiz questions, as well as making me laugh with "wrong answers only" to common questions. 
 

@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 *{
     font-family: 'Montserrat', sans-serif;
 }
@@ -13,9 +13,7 @@ body{
     align-items: center;
     display: flex;
 }
-/* timer class below, might add styling later.  */
-/* .timer{  
-} */
+
 .main-container, .land-container, .final-container{
     background-color: #ecf0f1;
     width: 800px;
@@ -23,11 +21,13 @@ body{
     border-radius: 5px;
     padding: 10px;
 }
+
 .controls{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 /* makes start button / next button / score button larger*/
 .start-btn, .next-btn, .score-btn .replay-btn{
     font-size: 1.5rem;
@@ -36,6 +36,7 @@ body{
     background-color: #8e44ad;
     color: #ecf0f1;
 }
+
 /* all answer buttons have the same color / size  */
 .btn{
 background-color: #8e44ad;
@@ -43,10 +44,12 @@ border-radius: 5px;
 font-weight: bold;
 color: #ecf0f1;
 }
+
 button:hover{
     background-color: #9b59b6;
     color: black;
 }
+
 /* makes buttons 2 on 2 */
 .btn-display{
     display: grid;
@@ -55,18 +58,15 @@ button:hover{
     margin: 20px 0;
 }
 
-footer, a{
-    background-color: #ecf0f1;
-    color: #8e44ad;
-}
 a:hover{
     color: #9b59b6
 }
+
 .hide{
     display: none;
 }
 
-/* possible options for changing background color / button color if answer is correct or incorrect */
+/* changes background color / button colors if answer is correct or incorrect */
 body.correct{
     background-color: #33ff00;
 }
@@ -75,11 +75,15 @@ body.wrong{
     background-color: #ff0033;
 }
 
-/* can probably get rid of these two  */
 button.correct{
     background-color: #33ff00;
 }
 
 button.wrong{
     background-color: #ff0033;
+}
+/* footer styling */
+footer, a{
+    background-color: #ecf0f1;
+    color: #8e44ad;
 }
