@@ -141,6 +141,7 @@ function rePlay(){
     scoreContainer.classList.add('hide');
     scoreButton.classList.add('hide');
     replayButton.classList.add('hide');
+    clearInterval(theTimer);
     startQuiz();
 }
 
